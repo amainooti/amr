@@ -10,13 +10,15 @@ const protectRoute = async (req, res, next) => {
     const token = authHeader.split(' ')[1];
 
     try {
-        // Verify the JWT token with the provided secret (JWT_SECRET)
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-        // Attach the decoded data (user information) to the request object for further processing if needed
         req.user = decoded;
 
-        // Proceed to the next middleware or route handler
+        // Check if the user's role is in the list of allowed roles
+        const allowedRoles = req.allowedRoles || [];
+        if (allowedRoles.length > 0 && !allowedRoles.includes(req.user.role)) {
+            return res.status(403).json({ err: "Forbidden: Access denied. User role does not have permission to access this route." });
+        }
+
         next();
     } catch (error) {
         return res.status(401).json({ err: "Unauthorized: Invalid authentication token" });

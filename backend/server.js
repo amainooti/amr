@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import { connectDb } from "./db/db.js";
 import authrouter from "./routes/auth.js";
+import applicationRouter from "./routes/application.js";
+import userRouter from "./routes/users.js";
 dotenv.config()
 
 const app = express();
@@ -17,7 +19,9 @@ app.use(morgan("combined"));
 
 // routers
 
-app.use("/auth", authrouter)
+app.use("/auth", authrouter);
+app.use("/application", applicationRouter);
+app.use("/user", userRouter);
 
 function startAPP(uri) {
     app.listen(uri, () => {

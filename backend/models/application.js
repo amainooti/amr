@@ -5,7 +5,11 @@ const applicationSchema = new mongoose.Schema({
     result: String,
     contact: String,
     courseOfStudy: String,
-    application: String
+    applicationReport: String,
+    user: {
+        type: mongoose.Types.ObjectId,
+        ref: "User"
+    }
 });
 
 
@@ -13,8 +17,3 @@ const applicationSchema = new mongoose.Schema({
 const Application = mongoose.model('Document', applicationSchema);
 export default Application;
 
-
-// a.	The Scholarship application form
-// Name:
-// Institution:
-// Upload Results and Transcript
