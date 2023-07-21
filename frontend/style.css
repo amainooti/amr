@@ -1,0 +1,18 @@
+
+
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,700;1,400&family=Sarabun:wght@300;400;500;600&display=swap');
+/* colors */
+:root {
+  --dark-color: rgb(8, 18, 37);
+  --bg-color: rgb(181, 194, 202);
+  --green-color: rgb(176, 214, 157);
+}
+
+/* layout */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}

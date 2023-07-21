@@ -32,10 +32,15 @@ const userSchema = new mongoose.Schema({
         enum: ["admin", "user"],
         default: "user"
     },
-    application: {
-        type: mongoose.Types.ObjectId,
-        "ref": "Application"
-    }
+    status: {
+        type: String,
+        enum: ["approved", "declined", "in progress"],
+        default: "in progress"
+    },
+      messages: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Message",
+    }],
 
 
 }, {timestamps: true})

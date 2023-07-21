@@ -13,8 +13,8 @@ export const updateApplication = async (req, res) => {
         }
 
         // If the user is not an admin and is trying to update other users' applications
-        if (req.user.role !== "admin" && req.user._id.toString() !== application.userId.toString()) {
-            return res.status(403).json({ err: "Forbidden: Access denied. User can update only their own applications." });
+       if (req.user.role !== "admin" && req.user.userId !== application.user.toString()) {
+            return res.status(403).json({ err: "Forbidden: Access denied. User can delete only their own applications." });
         }
 
         // Update the application
@@ -36,9 +36,10 @@ export const deleteApplication = async (req, res) => {
         }
 
         // If the user is not an admin and is trying to delete other users' applications
-        if (req.user.role !== "admin" && req.user._id.toString() !== application.userId.toString()) {
+       if (req.user.role !== "admin" && req.user.userId !== application.user.toString()) {
             return res.status(403).json({ err: "Forbidden: Access denied. User can delete only their own applications." });
         }
+
 
         // Delete the application
         await Application.findByIdAndDelete(applicationId);
@@ -61,9 +62,10 @@ export const getApplication = async (req, res) => {
         }
 
         // If the user is not an admin and is trying to access other users' applications
-        if (req.user.role !== "admin" && req.user._id.toString() !== application.userId.toString()) {
-            return res.status(403).json({ err: "Forbidden: Access denied. User can access only their own applications." });
+       if (req.user.role !== "admin" && req.user.userId !== application.user.toString()) {
+            return res.status(403).json({ err: "Forbidden: Access denied. User can delete only their own applications." });
         }
+
 
         res.status(200).json({ application });
     } catch (error) {
