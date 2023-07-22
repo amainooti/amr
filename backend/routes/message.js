@@ -20,7 +20,7 @@ messageRouter.get('/messages/user', protectRoute, (req, res) => {
         });
 });
 
-messageRouter.get('//messages/admin', protectRoute, (req, res) => {
+messageRouter.get('/messages/admin', protectRoute, (req, res) => {
     getAllAdminMessages(req, res)
         .catch(err => {
             res.status(500).json({ err: err.message });

@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import Admin from "./admin.js";
 
 const userSchema = new mongoose.Schema({
     firstName: {

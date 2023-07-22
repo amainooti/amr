@@ -5,7 +5,8 @@ import Message from "../models/message.js";
 const createMessage = async (req, res) => {
   try {
     // Get the sender user ID from the request (assuming user is authenticated)
-    const senderUserId = req.user.id;
+    const senderUserId = req.user.userId;
+      console.log("Sender User ID:", senderUserId);
 
     // Get the recipient admin user ID (for demonstration, you can adapt this part as needed)
     const recipientAdmin = await User.findOne({ role: "admin" });

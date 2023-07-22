@@ -5,6 +5,7 @@ import morgan from "morgan";
 import { connectDb } from "./db/db.js";
 import authrouter from "./routes/auth.js";
 import applicationRouter from "./routes/application.js";
+import messageRouter from "./routes/message.js";
 import userRouter from "./routes/users.js";
 dotenv.config()
 
@@ -22,6 +23,7 @@ app.use(morgan("combined"));
 app.use("/auth", authrouter);
 app.use("/application", applicationRouter);
 app.use("/user", userRouter);
+app.use("/message", messageRouter);
 
 function startAPP(uri) {
     app.listen(uri, () => {

@@ -36,7 +36,7 @@ export const deleteUser = async (req, res) => {
         }
 
         // If the user is not an admin and is trying to delete other users
-        if (req.user.role !== "admin" && req.user._id.toString() !== userId) {
+        if (req.user.role !== "admin" && req.user.userId.toString() !== userId) {
             return res.status(403).json({ err: "Forbidden: Access denied. User can delete only their own account." });
         }
 
@@ -59,7 +59,7 @@ export const getUser = async (req, res) => {
         }
 
         // If the user is not an admin and is trying to access other users' information
-        if (req.user.role !== "admin" && req.user._id.toString() !== userId) {
+        if (req.user.role !== "admin" && req.user.userId.toString() !== userId) {
             return res.status(403).json({ err: "Forbidden: Access denied. User can access only their own information." });
         }
 

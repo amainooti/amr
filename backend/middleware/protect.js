@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 
 const protectRoute = async (req, res, next) => {
     const authHeader = req.headers['authorization'];
+      console.log("Authorization Header:", authHeader);
 
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
         return res.status(401).json({ err: "Unauthorized: Missing or invalid authentication token" });
@@ -11,6 +12,7 @@ const protectRoute = async (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        console.log("Decoded User Data:", decoded);
         req.user = decoded;
 
         // Check if the user's role is in the list of allowed roles
